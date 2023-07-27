@@ -121,14 +121,14 @@
 <!-- Section for contact us -->
         <section id='contact' class="contact">
             <h2 class="text-center">Contact Us</h2>
-            <div class="form">
-                <input class="form-input" type="name" name="name" id="name" placeholder="Enter your name">
+            <form method="post" action="" name="contact-form" class="form" id="contact-form">
+                <input class="form-input" type="text" name="name" id="name" placeholder="Enter your name">
                 <input class="form-input" type="phone" name="phone" id="phone" placeholder="Enter your Phone No.">
                 <input class="form-input" type="email" name="email" id="email" placeholder="Enter your E-mail">
-                <textarea class="form-input" name="text" id="text" cols="20" rows="5"
-                    placeholder="Elaborate your concern"></textarea>
-                <button class="btnsub">Submit</button>
-            </div>
+                <textarea class="form-input" name="message" id="message" cols="20" rows="5"
+                    placeholder="enter your message"></textarea>
+                <input type="submit" class="btnsub" value="Submit" id="submit">
+            </form>
         </section>
         <footer class="background">
             <p class="text-footer">Copyright &copy; 2023 - All rights reserved</p>
@@ -138,6 +138,18 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="index.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwxCzg9PEYFXlkSlZtHoFektm8BFwGXWd2uYgAYnqrK1PjrVTVNPE_4IoXz_4E1-WxMSA/exec'
+        const form = document.forms['contact-form']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thank you! your form is submitted successfully." ))
+            .then(() => {  window.location.reload(); })
+            .catch(error => console.error('Error!', error.message))
+        })
+    </script>
 </body>
 
 </html>
